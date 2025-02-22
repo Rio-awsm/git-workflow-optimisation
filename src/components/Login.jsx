@@ -1,6 +1,6 @@
 import { loginWithGitHub } from "../firebase/auth";
 
-const Login = () => {
+const Login = ({ inputText, inputColor, textColor }) => {
   const handleLogin = async () => {
     try {
       await loginWithGitHub();
@@ -11,13 +11,14 @@ const Login = () => {
   };
 
   return (
-    <div className="">
+    <div className="flex justify-center">
       <button
         onClick={handleLogin}
-        className="w-[200px] flex items-center justify-center gap-2 bg-blak text-white cursor-pointer py-3 hover:bg-gray-700 transition-colors border rounded-2xl"
+        style={{ backgroundColor: inputColor, color: textColor }}
+        className="min-w-[200px] max-w-full text-md font-bold px-4 flex items-center justify-center gap-2 cursor-pointer py-3 hover:bg-gray-700 transition-colors border rounded-4xl whitespace-nowrap overflow-hidden text-ellipsis"
       >
         <svg
-          className="w-6 h-6"
+          className="w-6 h-6 flex-shrink-0"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -28,7 +29,7 @@ const Login = () => {
             clipRule="evenodd"
           />
         </svg>
-        Login with GitHub
+        <span className="truncate">{inputText}</span>
       </button>
     </div>
   );

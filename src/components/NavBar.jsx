@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
+import { loginWithGitHub } from "../firebase/auth";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
@@ -23,6 +24,15 @@ const NavBar = () => {
       }, 100); // Delay to ensure the homepage loads first
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      await loginWithGitHub();
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Failed to login with GitHub. Please try again.");
     }
   };
 
@@ -62,7 +72,10 @@ const NavBar = () => {
       </div>
 
       {!user ? (
-        <div className="bg-[#D3FFCA] text-md font-bold text-black rounded-2xl px-4 py-2 cursor-pointer">
+        <div
+          onClick={handleLogin}
+          className="bg-[#D3FFCA] text-md font-bold text-black rounded-2xl px-4 py-2 cursor-pointer"
+        >
           Analyze Now
         </div>
       ) : (

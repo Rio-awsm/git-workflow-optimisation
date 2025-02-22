@@ -23,8 +23,9 @@ const Homepage = () => {
         className="text-white flex flex-col gap-8 items-center pt-36 h-screen overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: "url('/assets/BG.svg')" }}
       >
-        <div className="text-center text-8xl ">
-          Future of DevOps is <span className="text-[#D3FFCA]">Green</span>
+        <div className="text-center text-8xl bg-gradient-to-l from-white to-white/45 inline-block text-transparent bg-clip-text">
+          Future of DevOps is{" "}
+          <span className="text-[#D3FFCA] font-[Solitreo]">Green</span>
         </div>
         <div className="text-xl w-[700px] text-center opacity-40">
           AI-powered analytics to transform your GitHub pipelines— track
@@ -32,42 +33,49 @@ const Homepage = () => {
         </div>
         <div className="flex justify-center space-x-6">
           {!user ? (
-            <Login />
+            <Login inputText="Login With Github" inputColor="#101311" textColor="#ffffff"/>
           ) : (
             <a href="/select-repo">
-              <div className="bg-[#101311] text-md font-bold text-white rounded-2xl w-[220px] text-center py-3 cursor-pointer flex gap-4 justify-center border">
+              <div className="bg-[#101311] text-md font-bold text-white rounded-4xl w-[220px] text-center py-3 cursor-pointer flex gap-4 justify-center border">
                 <FaCodeBranch className="text-2xl" />
                 Select Repository
               </div>
             </a>
           )}
 
-          <div className="bg-[#D3FFCA] text-md font-bold text-[#101311] rounded-2xl w-[200px] text-center py-3 cursor-pointer flex gap-4 justify-center">
+          <div className="bg-[#D3FFCA] text-md font-bold text-[#101311] rounded-4xl w-[200px] text-center py-3 cursor-pointer flex gap-4 justify-center">
             <FaWandMagicSparkles className="text-2xl" />
             Optimize Code
           </div>
         </div>
       </section>
 
-      <section id="about" className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]">
+      <section
+        id="about"
+        className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]"
+      >
         <div className="bg-[#232B23] text-md font-bold text-[#D3FFCA] rounded-2xl w-[200px] text-center py-3 flex gap-4 justify-center">
           About Optimizer
         </div>
-        <div className="text-center text-white text-4xl w-[900px]">
+        <div className="text-center text-4xl w-[900px] bg-gradient-to-r from-white to-white/50 inline-block text-transparent bg-clip-text">
           We make GitHub workflows faster, smarter, and greener. Our AI
           optimizes CI/CD pipelines to reduce execution time and carbon
           footprint— so you ship code efficiently without extra{" "}
-          <span className="text-[#D3FFCA]">effort.</span>
+          <span className="text-[#D3FFCA] font-[Solitreo]">effort.</span>
         </div>
       </section>
 
-      <section id="services" className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]">
+      <section
+        id="services"
+        className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]"
+      >
         <div className="bg-[#232B23] text-md font-bold text-[#D3FFCA] rounded-2xl w-[200px] text-center py-3 flex gap-4 justify-center">
           What you’ll get
         </div>
-        <div className="text-center text-white text-4xl w-[900px]">
+        <div className="text-center text-4xl w-[900px] bg-gradient-to-r from-white to-white/50 inline-block text-transparent bg-clip-text">
           We fine-tune creative workflows, so you spend less time fixing and
-          more time <span className="text-[#D3FFCA]">innovating.</span>
+          more time{" "}
+          <span className="text-[#D3FFCA] font-[Solitreo]">innovating.</span>
         </div>
         <div className="flex justify-center space-x-8 pt-8">
           <div>
@@ -83,9 +91,9 @@ const Homepage = () => {
       </section>
 
       <section className="text-white flex flex-col gap-8 items-center py-36 bg-[#101311]">
-        <div className="text-center text-6xl ">
+        <div className="text-center text-6xl bg-gradient-to-r from-white to-white/50 inline-block text-transparent bg-clip-text">
           Unlock efficiency with one{" "}
-          <span className="text-[#D3FFCA]">click!</span>
+          <span className="text-[#D3FFCA] font-[Solitreo]">click!</span>
         </div>
         <div className="text-xl w-[700px] text-center opacity-40">
           Reduce carbon footprint and streamline development. Paste your GitHub
@@ -93,7 +101,7 @@ const Homepage = () => {
         </div>
         <div>
           {!user ? (
-            <Login />
+            <Login inputText="Connect your Github Account" inputColor="#D3FFCA" textColor="#101311"/>
           ) : (
             <a href="/select-repo">
               <div className="bg-[#101311] text-md font-bold text-white rounded-2xl w-[220px] text-center py-3 cursor-pointer flex gap-4 justify-center border">
