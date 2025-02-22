@@ -17,7 +17,6 @@ const RepoList = ({ user }) => {
         setLoading(true);
         setError(null);
 
-        // Get the GitHub access token from the credential
         const githubProvider = user.providerData.find(
           (provider) => provider.providerId === "github.com"
         );
@@ -26,8 +25,6 @@ const RepoList = ({ user }) => {
           throw new Error("No GitHub authentication found");
         }
 
-        // Get the access token from the additional user info
-        // This is stored in the user's stsTokenManager after GitHub OAuth
         const credential = user.reloadUserInfo?.providerUserInfo?.find(
           (provider) => provider.providerId === "github.com"
         );
@@ -36,7 +33,6 @@ const RepoList = ({ user }) => {
           throw new Error("No GitHub credentials found");
         }
 
-        // Get repositories using the OAuth token
         const res = await axios.get("https://api.github.com/user/repos", {
           headers: {
             Accept: "application/vnd.github.v3+json",
@@ -44,7 +40,6 @@ const RepoList = ({ user }) => {
           params: {
             sort: "updated",
             per_page: 100,
-            // Use the public repos endpoint since we might not have private access
             type: "owner",
             affiliation: "owner,collaborator",
           },
@@ -53,7 +48,6 @@ const RepoList = ({ user }) => {
         setRepos(res.data);
       } catch (error) {
         console.error("Error fetching repos:", error);
-        // Try fallback to public repos if authentication fails
         try {
           const username =
             user.reloadUserInfo?.screenName || user.providerData[0]?.uid;
@@ -92,7 +86,7 @@ const RepoList = ({ user }) => {
       setSelectedRepo(repo.id);
       await saveRepoToDatabase(user.uid, repo);
       alert(`Successfully saved repository: ${repo.name}`);
-      window.location.href = "/dashboard"
+      window.location.href = "/dashboard";
     } catch (error) {
       console.error("Error saving repo:", error);
       alert(`Error saving repository: ${error.message}`);
@@ -100,6 +94,17 @@ const RepoList = ({ user }) => {
       setSelectedRepo(null);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 bg-[#101311] flex items-center justify-center flex-col">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D3FFCA]"></div>
+        <p className="mt-4 text-[#D3FFCA] opacity-40">
+          Loading repositories...
+        </p>
+      </div>
+    );
+  }
 
   if (error) {
     return (
@@ -127,7 +132,7 @@ const RepoList = ({ user }) => {
   }
 
   return (
-    <div className="bg-[#101311] text-white overflow-hidden">
+    <div className="min-h-screen bg-[#101311] text-white">
       <div className="p-8 border-b border-[#232B23]">
         <div className="bg-[#232B23] text-[#D3FFCA] rounded-2xl w-[200px] text-center py-3 mb-6">
           Your Repositories
@@ -141,14 +146,9 @@ const RepoList = ({ user }) => {
         </p>
       </div>
 
-      {loading ? (
+      {repos.length === 0 ? (
         <div className="p-16 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D3FFCA] mx-auto"></div>
-          <p className="mt-4 opacity-40">Loading repositories...</p>
-        </div>
-      ) : repos.length === 0 ? (
-        <div className="p-16 text-center">
-          <FaCode className="text-4xl text-[#D3FFCA] mx-auto mb-4" />
+          <FaStar className="text-4xl text-[#D3FFCA] mx-auto mb-4" />
           <p className="opacity-40 mb-4">No repositories found</p>
           <a
             href="https://github.com/new"
