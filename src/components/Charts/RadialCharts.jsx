@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const RadialChart = ({ value, label, color }) => {
-  const radius = 40;
+  const radius = 80;
   const circumference = 2 * Math.PI * radius;
   const progress = (value / 100) * circumference;
   const remainingDash = circumference - progress;
@@ -10,33 +10,34 @@ const RadialChart = ({ value, label, color }) => {
   return (
     <div className="flex flex-col items-center">
       <div className="relative">
-        <svg width="100" height="100" className="transform -rotate-90">
+        <svg width="200" height="200" className="transform -rotate-90">
           {/* Background circle */}
           <circle
-            cx="50"
-            cy="50"
+            cx="100"
+            cy="100"
             r={radius}
             stroke="#2A2A2A"
-            strokeWidth="8"
+            strokeWidth="20"
             fill="none"
           />
           {/* Progress circle */}
           <circle
-            cx="50"
-            cy="50"
+            cx="100"
+            cy="100"
             r={radius}
             stroke={color}
-            strokeWidth="8"
+            strokeWidth="20"
             strokeDasharray={`${progress} ${remainingDash}`}
+            strokeLinecap="round"
             fill="none"
             className="transition-all duration-500 ease-in-out"
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-xl font-bold text-white">{value}%</span>
+          <span className="text-2xl font-semibold text-white">{value}%</span>
         </div>
       </div>
-      <span className="mt-2 text-sm text-gray-300">{label}</span>
+      <span className="mt-2 text-lg text-gray-300">{label}</span>
     </div>
   );
 }

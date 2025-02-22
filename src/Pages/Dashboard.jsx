@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 import RadialChart from "../components/Charts/RadialCharts";
 import CodeComparison from "../components/Charts/CodeComparision";
@@ -57,137 +58,54 @@ function Dashboard() {
   return (
     <main className="bg-[#101311] text-white">
       <NavBar />
-      <section className="text-white flex flex-col gap-8 items-center py-36 bg-[#101311]">
+      <section className="text-white flex flex-col gap-8 items-center bg-[#101311] py-12">
         <div className="text-center text-6xl ">
-          Optimize {" "}
-          <span className="text-[#D3FFCA]">click!</span>
+          Optimize Smarter, Deploy
+          <span className="text-[#D3FFCA]"> Greener</span>
         </div>
       </section>
-      <section>
-        <h1 className="text-3xl font-bold mb-8">Performance Dashboard</h1>
-
+      <section className="">
         {initialData && currentData && (
-          <div className="grid grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#1A1B1E] p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-4">CPU Usage</h3>
-              <div className="flex items-center justify-between gap-4">
-                <RadialChart
-                  value={initialData.cpu_usage}
-                  label="Initial"
-                  color="#4ADE80"
-                />
-                <div className="flex flex-col items-center justify-center px-4">
+          <div className="grid grid-cols-3 gap-6 mb-12 px-8">
+            {["cpu_usage", "gpu_usage", "ram_usage"].map((key) => (
+              <div key={key} className="border p-6 rounded-xl">
+                <h3 className="text-4xl mb-4">{key.replace("_", " ").toUpperCase()}</h3>
+                <div className="flex py-4 gap-4">
+                  {calculateChange(currentData[key], initialData[key]).direction === "increase" ? (
+                    <FaArrowTrendDown className="text-6xl text-[#FF4B4B]" />
+                  ) : (
+                    <FaArrowTrendUp className="text-6xl text-[#78FFD6]" />
+                  )}
                   <span
-                    className={`text-2xl font-bold ${
-                      calculateChange(
-                        currentData.cpu_usage,
-                        initialData.cpu_usage
-                      ).direction === "increase"
-                        ? "text-red-400"
-                        : "text-green-400"
+                    className={`text-6xl ${
+                      calculateChange(currentData[key], initialData[key]).direction === "increase"
+                        ? "text-[#FF4B4B]"
+                        : "text-[#78FFD6]"
                     }`}
                   >
-                    {
-                      calculateChange(
-                        currentData.cpu_usage,
-                        initialData.cpu_usage
-                      ).value
-                    }
-                    %
+                    {calculateChange(currentData[key], initialData[key]).value}%
                   </span>
-                  <span className="text-sm text-gray-400">Change</span>
                 </div>
-                <RadialChart
-                  value={currentData.cpu_usage}
-                  label="Current"
-                  color="#4ADE80"
-                />
-              </div>
-            </div>
-
-            <div className="bg-[#1A1B1E] p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-4">GPU Usage</h3>
-              <div className="flex items-center justify-between gap-4">
-                <RadialChart
-                  value={initialData.gpu_usage}
-                  label="Initial"
-                  color="#4ADE80"
-                />
-                <div className="flex flex-col items-center justify-center px-4">
-                  <span
-                    className={`text-2xl font-bold ${
-                      calculateChange(
-                        currentData.gpu_usage,
-                        initialData.gpu_usage
-                      ).direction === "increase"
-                        ? "text-red-400"
-                        : "text-green-400"
-                    }`}
-                  >
-                    {
-                      calculateChange(
-                        currentData.gpu_usage,
-                        initialData.gpu_usage
-                      ).value
-                    }
-                    %
-                  </span>
-                  <span className="text-sm text-gray-400">Change</span>
+                <div className="flex gap-6">
+                  <RadialChart value={initialData[key]} label="Redundant" color="#FF4B4B" />
+                  <RadialChart value={currentData[key]} label="Optimized" color="#78FFD6" />
                 </div>
-                <RadialChart
-                  value={currentData.gpu_usage}
-                  label="Current"
-                  color="#4ADE80"
-                />
-              </div>
-            </div>
-
-            <div className="bg-[#1A1B1E] p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-4">RAM Usage</h3>
-              <div className="flex items-center justify-between gap-4">
-                <RadialChart
-                  value={initialData.ram_usage}
-                  label="Initial"
-                  color="#4ADE80"
-                />
-                <div className="flex flex-col items-center justify-center px-4">
-                  <span
-                    className={`text-2xl font-bold ${
-                      calculateChange(
-                        currentData.ram_usage,
-                        initialData.ram_usage
-                      ).direction === "increase"
-                        ? "text-red-400"
-                        : "text-green-400"
-                    }`}
-                  >
-                    {
-                      calculateChange(
-                        currentData.ram_usage,
-                        initialData.ram_usage
-                      ).value
-                    }
-                    %
-                  </span>
-                  <span className="text-sm text-gray-400">Change</span>
+                <div className="pt-8 text-xl text-white opacity-40">
+                  {key === "cpu_usage"
+                    ? "CPU usage is reduced through optimized algorithms, parallel processing, caching, and process minimization."
+                    : key === "gpu_usage"
+                    ? "GPU usage is optimized through better workload distribution, memory management, and efficient processing."
+                    : "RAM usage optimization includes memory pooling, garbage collection, and data structure improvements."}
                 </div>
-                <RadialChart
-                  value={currentData.ram_usage}
-                  label="Current"
-                  color="#4ADE80"
-                />
               </div>
-            </div>
+            ))}
           </div>
         )}
 
         {workflowData && (
           <>
             <EmissionsChart data={workflowData.emissions_data} />
-            <CodeComparison
-              original={workflowData.original_yaml}
-              optimized={workflowData.optimized_yaml}
-            />
+            <CodeComparison original={workflowData.original_yaml} optimized={workflowData.optimized_yaml} />
           </>
         )}
 
