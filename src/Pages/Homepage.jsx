@@ -49,7 +49,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      <section className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]">
+      <section id="about" className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]">
         <div className="bg-[#232B23] text-md font-bold text-[#D3FFCA] rounded-2xl w-[200px] text-center py-3 flex gap-4 justify-center">
           About Optimizer
         </div>
@@ -61,7 +61,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      <section className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]">
+      <section id="services" className="bg-[#101311] flex flex-col items-center gap-8 py-[100px]">
         <div className="bg-[#232B23] text-md font-bold text-[#D3FFCA] rounded-2xl w-[200px] text-center py-3 flex gap-4 justify-center">
           What you’ll get
         </div>
