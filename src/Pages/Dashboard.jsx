@@ -7,6 +7,7 @@ import CodeComparison from "../components/Charts/CodeComparision";
 import { database } from "../firebase/config";
 import EmissionsChart from "../components/Charts/EmissionsChart";
 import NavBar from "../components/NavBar";
+import PrCreated from "../components/PrCreated";
 
 function Dashboard() {
   const [initialData, setInitialData] = useState(null);
@@ -58,6 +59,7 @@ function Dashboard() {
   return (
     <main className="bg-[#101311] text-white">
       <NavBar />
+      <PrCreated />
       <section className="text-white flex flex-col gap-8 items-center bg-[#101311] py-12">
         <div className="text-center text-6xl bg-gradient-to-r from-white to-white/50 text-transparent bg-clip-text">
           Optimize Smarter, Deploy
@@ -72,12 +74,12 @@ function Dashboard() {
                 <h3 className="text-4xl mb-4">{key.replace("_", " ").toUpperCase()}</h3>
                 <div className="flex py-4 gap-4">
                   {calculateChange(currentData[key], initialData[key]).direction === "increase" ? (
-                    <FaArrowTrendDown className="text-6xl text-[#FF4B4B]" />
+                    <FaArrowTrendDown className="text-4xl text-[#FF4B4B]" />
                   ) : (
-                    <FaArrowTrendUp className="text-6xl text-[#78FFD6]" />
+                    <FaArrowTrendUp className="text-4xl text-[#78FFD6]" />
                   )}
                   <span
-                    className={`text-6xl ${
+                    className={`text-4xl ${
                       calculateChange(currentData[key], initialData[key]).direction === "increase"
                         ? "text-[#FF4B4B]"
                         : "text-[#78FFD6]"
