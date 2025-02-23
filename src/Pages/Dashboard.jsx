@@ -59,14 +59,14 @@ function Dashboard() {
     <main className="bg-[#101311] text-white">
       <NavBar />
       <section className="text-white flex flex-col gap-8 items-center bg-[#101311] py-12">
-        <div className="text-center text-6xl ">
+        <div className="text-center text-6xl bg-gradient-to-r from-white to-white/50 text-transparent bg-clip-text">
           Optimize Smarter, Deploy
-          <span className="text-[#D3FFCA]"> Greener</span>
+          <span className="text-[#D3FFCA] font-[Solitreo]"> Greener</span>
         </div>
       </section>
       <section className="">
         {initialData && currentData && (
-          <div className="grid grid-cols-3 gap-6 mb-12 px-8">
+          <div className="grid grid-cols-3 gap-[5vw] mb-12 px-10">
             {["cpu_usage", "gpu_usage", "ram_usage"].map((key) => (
               <div key={key} className="border p-6 rounded-xl">
                 <h3 className="text-4xl mb-4">{key.replace("_", " ").toUpperCase()}</h3>
