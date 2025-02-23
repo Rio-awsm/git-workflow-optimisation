@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  flowmorph:
+    build: .
+    container_name: flowmorph_container
+    env_file:
+      - variables.env
+    volumes:
+      - .:/app
+    ports:
+      - "80:80"
+    command: python analysis.py
