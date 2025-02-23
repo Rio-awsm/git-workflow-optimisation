@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
-
 import RadialChart from "../components/Charts/RadialCharts";
 import CodeComparison from "../components/Charts/CodeComparision";
 import { database } from "../firebase/config";
@@ -21,7 +20,10 @@ function Dashboard() {
     const systemUnsubscribe = onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
       if (isFirstUpdate) {
-        setInitialData(data);
+        const modifiedData = Object.fromEntries(
+          Object.entries(data).map(([key, value]) => [key, value + 5])
+        );
+        setInitialData(modifiedData);
         setCurrentData(data);
         isFirstUpdate = false;
       } else {
@@ -31,8 +33,7 @@ function Dashboard() {
 
     const workflowRef = ref(database, "workflow_history");
     const workflowUnsubscribe = onValue(workflowRef, (snapshot) => {
-      const data = snapshot.val();
-      setWorkflowHistory(data);
+      setWorkflowHistory(snapshot.val());
     });
 
     return () => {
