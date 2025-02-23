@@ -48,7 +48,7 @@ const NavBar = () => {
   return (
     <div className="bg-[#101311] text-white flex justify-between py-6 px-16">
       <div
-        className="text-lg font-bold cursor-pointer"
+        className="text-2xl font-bold cursor-pointer"
         onClick={() => navigate("/")}
       >
         OPT/CI
