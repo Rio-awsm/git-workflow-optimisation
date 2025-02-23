@@ -28,6 +28,8 @@ Inefficient CI/CD workflows lead to **high cloud costs, increased carbon emissio
 
 ---
 
+**Explore the idea** - https://gamma.app/docs/Smarter-Faster-Greener-The-Future-of-CICD-Optimization-mprzgfip3gq0ta9
+
 ## 🛠 How It Works
 
 1️⃣ **Paste your GitHub repository URL** or connect your account.
