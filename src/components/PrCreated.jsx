@@ -28,14 +28,14 @@ const PrCreated = () => {
 
   if (JSON.stringify(data) !== "true" || !repoData || !isVisible) return null;
 
-  const repoName = repoData?.ZG45PSRcuKMMLSaEOilhzsU4OyN2?.selectedRepo?.name;
-  const repoUrl = repoData?.ZG45PSRcuKMMLSaEOilhzsU4OyN2?.selectedRepo?.url;
+  const repoName = repoData?.repo_name;
+  const repoUrl = repoData?.url;
 
   return (
     <div
-      className={`fixed right-10 top-20 shadow-xl rounded-lg p-4 flex items-center gap-4 transition-all duration-300 ease-in-out
+      className={`fixed right-10 z-50 top-20 shadow-xl rounded-lg p-4 flex items-center gap-4 transition-all duration-300 ease-in-out
         ${isHovered ? "w-72" : "w-16 h-16 justify-center"}
-         hover:border-green-500 animate-bounce`}
+         hover:border-green-500`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -51,7 +51,7 @@ const PrCreated = () => {
       
       {isHovered && (
         <>
-          <div className="flex flex-col">
+          <div className="flex flex-col bg-white p-2">
             <p className="text-sm font-semibold text-green-600">New PR Created!</p>
             <p className="text-xs text-gray-600 truncate">{repoName}</p>
           </div>

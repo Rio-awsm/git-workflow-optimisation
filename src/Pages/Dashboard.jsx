@@ -68,7 +68,7 @@ function Dashboard() {
       </section>
       <section className="">
         {initialData && currentData && (
-          <div className="grid grid-cols-3 gap-[5vw] mb-12 px-10">
+          <div className="grid grid-cols-3 gap-4 mb-12 px-8">
             {["cpu_usage", "gpu_usage", "ram_usage"].map((key) => (
               <div key={key} className="border p-6 rounded-xl">
                 <h3 className="text-4xl mb-4">{key.replace("_", " ").toUpperCase()}</h3>
