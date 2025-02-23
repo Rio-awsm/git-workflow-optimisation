@@ -74,7 +74,7 @@ const OptimizeCode = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/chat', {
+      const response = await fetch('http://ip172-18-0-11-cutavc2im2rg00eh0ds0-3000.direct.labs.play-with-docker.com/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
