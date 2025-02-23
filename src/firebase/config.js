@@ -3,14 +3,14 @@ import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBkoaipcAwK052ikCJn6DLcfgN2t5iSPxk",
-  authDomain: "devbud-4f264.firebaseapp.com",
-  databaseURL: "https://devbud-4f264-default-rtdb.firebaseio.com",
-  projectId: "devbud-4f264",
-  storageBucket: "devbud-4f264.firebasestorage.app",
-  messagingSenderId: "946167149971",
-  appId: "1:946167149971:web:49af0525a466d08f002466",
-  measurementId: "G-678QS7K8BE"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);

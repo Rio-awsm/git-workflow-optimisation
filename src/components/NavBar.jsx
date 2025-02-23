@@ -57,12 +57,10 @@ const NavBar = () => {
         <a href="/" className="opacity-40 cursor-pointer hover:opacity-80">
           Home
         </a>
-        <div
-          onClick={() => handleNavigation("about")}
-          className="opacity-40 cursor-pointer hover:opacity-80"
+        <a href="/dashboard" className="opacity-40 cursor-pointer hover:opacity-80"
         >
-          About
-        </div>
+          Dashboard
+        </a>
         <div
           onClick={() => handleNavigation("services")}
           className="opacity-40 cursor-pointer hover:opacity-80"
