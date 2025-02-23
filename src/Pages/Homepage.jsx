@@ -43,10 +43,10 @@ const Homepage = () => {
             </a>
           )}
 
-          <div className="bg-[#D3FFCA] text-md font-bold text-[#101311] rounded-4xl w-[200px] text-center py-3 cursor-pointer flex gap-4 justify-center">
+         <a href="/optimize"><div className="bg-[#D3FFCA] text-md font-bold text-[#101311] rounded-4xl w-[200px] text-center py-3 cursor-pointer flex gap-4 justify-center">
             <FaWandMagicSparkles className="text-2xl" />
             Optimize Code
-          </div>
+          </div></a> 
         </div>
       </section>
 
