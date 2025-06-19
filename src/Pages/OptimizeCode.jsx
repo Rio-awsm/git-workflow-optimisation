@@ -74,7 +74,7 @@ const OptimizeCode = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://ip172-18-0-11-cutavc2im2rg00eh0ds0-3000.direct.labs.play-with-docker.com/api/chat', {
+      const response = await fetch('http://localhost:3000/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const OptimizeCode = () => {
           messages: [
             {
               role: 'system',
-              content: 'You are a DevOps optimization assistant focused on sustainable practices. You help optimize CI/CD pipelines, reduce carbon footprint, and implement green computing practices in DevOps workflows. When sharing code examples, always wrap them in triple backticks with the appropriate language specification (yaml, bash, or json).',
+              content: 'You are a DevOps optimization assistant focused on sustainable practices. You help optimize CI/CD pipelines, reduce carbon footprint, and implement green computing practices in DevOps workflows. When sharing code examples, always wrap them in triple backticks with the appropriate language specification (yaml, bash, or json). DONT GIVE ANY RESPONSE IF THE TOPIC IS NOT RELATED TO DEVOPS AND SAY SORRY I CANT HELP YOU WITH THAT. Please provide more details on your optimization requirements to get started.',
             },
             {
               role: 'user',
